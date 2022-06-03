@@ -1,0 +1,3 @@
+﻿  lab_5.cpp
+C:\Users\slanc\source\repos\lab_5\lab_5\lab_5.cpp(109,34): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+  lab_5.vcxproj -> C:\Users\slanc\source\repos\lab_5\Debug\lab_5.exe
