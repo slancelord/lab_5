@@ -48,25 +48,32 @@ void Point::draw() const {
 }
 
 Point center(0, 0);
-float angel = 2;
-float tr = 2;
+Point c(0, 0);
+float angel = 20;
+float tr = 20;
+float b = 200;
+float a = 75;
+double i = 0.0;
+
 
 void myDisplay() {
 	glClear(GL_COLOR_BUFFER_BIT);
-
+	c.draw();
 	glPushMatrix();
 
-	glTranslatef(0, tr, 0);
-	
+	glTranslatef(a * cos(i), b * sin(i), 0);
 
-	glTranslatef(-center.getX(), -center.getY(), 0);
-	glRotatef(angel, 0, 0, 1);
+
 	glTranslatef(center.getX(), center.getY(), 0);
+	glRotatef(angel, 0, 0, 1);
+	glTranslatef(-center.getX(), -center.getY(), 0);
 	
 	glBegin(GL_POLYGON);
 	glPolygonMode(GL_FRONT, GL_FILL);
 
+	
 	glColor3f(0, 255, 0);
+
 	glBegin(GL_QUADS);
 		glVertex2f(center.getX() - 25, center.getY() - 25);
 		glVertex2f(center.getX() - 25, center.getY() + 25);
@@ -106,6 +113,10 @@ void myInit() {
 
 }
 
+void animation(void) {
+	i = (i < 6.25) ? i + 0.000001 : 0.0;
+}
+
 void main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	//инициализируем glut
@@ -118,7 +129,7 @@ void main(int argc, char** argv) {
 
 	glutDisplayFunc(myDisplay);
 	glutTimerFunc(40, timer, 0);
-
+	glutIdleFunc(animation);
 
 	//регистрируем функцию обратного вызова
 	myInit();
